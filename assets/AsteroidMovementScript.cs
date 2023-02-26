@@ -6,6 +6,7 @@ public class AsteroidMovementScript : MonoBehaviour
 {
 
     public float moveSpeed = 5;
+    public float deadZone = -25;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,12 @@ public class AsteroidMovementScript : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + (Vector3.left * moveSpeed) * Time.deltaTime;
+
+        if (transform.position.x < deadZone)
+        {
+            Debug.Log("Pipe Deleted");
+            Destroy(gameObject);
+        }
     }
     // keepiong track of dept with the Z value
 }
